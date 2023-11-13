@@ -67,7 +67,9 @@ $(function () {
     });
 })
 
-
+/* nesta função, estamos usando o nome da classe, por isso “.” é usado como um seletor.
+    Quando o chatbox_button for clicado, a div chatbox_chat irá aparecer usando a função
+    toggle() **/
 
 function displayBot() {
     $('.chatbox__button').click(function () {
@@ -77,22 +79,25 @@ function displayBot() {
     askBot()
 }
 
-function askBot() {
+/* Ao clicar no botão “Enviar” a requisição ou pergunta do usuário é enviada ao chatbot e
+    uma resposta apropriada deve ser dada pelo chatbot treinado **/
+function askBot() { 
+    //O símbolo ‘#’ é usado como um seletor para bot_input_text.
     $("#send_button").click(function () {
 
         var user_bot_input_text = $("#bot_input_text").val()
 
         if (user_bot_input_text != "") {
-           
+           // anexando as mensagens do usuário na div chat_messages para exibição
             $("#chat_messages").append('<div class="user__messages">' + user_bot_input_text + ' </div>')
             
-            //Limpe a caixa de entrada de texto após enviar a mensagem
+            //Limpe a caixa de entrada de texto após enviar a mensagem para obter novas mensagens do usuário
             $("#bot_input_text").val('');
 
             let chat_input_data = {
                 "user_bot_input_text": user_bot_input_text
             }
-
+//Atividade do aluno:
             $.ajax({
                 type: 'POST',
                 url: "/bot-response",
