@@ -57,7 +57,8 @@ def save_entry():
     with open("./static/assets/data_files/data_entry.csv", "a") as f:
         f.write(entry)
     return jsonify("Success")
-
+ 
+#Atividade do Aluno:
 
 @app.route("/bot-response", methods=["POST"])
 def bot():
